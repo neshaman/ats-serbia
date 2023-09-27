@@ -4,9 +4,10 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
-      <body className='bg-slate-950 text-white'>
+      <body className='bg-black text-white'>
         <Main />
         <NextScript />
+        <script src='flowbite.min.js'></script>
       </body>
     </Html>
   )

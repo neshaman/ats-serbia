@@ -6,24 +6,24 @@ import Container from 'components/container'
 import Layout from 'components/layout'
 import Image from 'next/image'
 import { client } from 'lib/apollo'
-import { GET_ALL_MOVIES } from 'lib/queries'
+import { GET_ALL_MOVIES, GET_CATEGORIES } from 'lib/queries'
 
-export default function Index({ allMovies: { movies } }) {
-  const moviePost = movies.nodes[0]
-  const movieFields = movies.nodes[0].movieFields
+export default function Index({ allCategories }) {
+  // const moviePost = movies.nodes[0]
+  // const movieFields = movies.nodes[0].movieFields
 
   return (
-    <Layout preview>
+    <Layout preview categories={allCategories} >
       <Container>
         {/* <Intro /> */}
-        { moviePost && (
+        {/* { moviePost && (
           <>
             <h2>{moviePost.title}</h2>
             <div dangerouslySetInnerHTML={{ __html: moviePost.content}}></div>
             <time className='font-bold'>{movieFields.runningTime} mins</time>
             <Image src={movieFields.featuredImage.node.sourceUrl} height={800} width={500} alt={moviePost.title} />
           </>
-        )}
+        )} */}
       </Container>
     </Layout>
   )
@@ -31,11 +31,11 @@ export default function Index({ allMovies: { movies } }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const response = await client.query({
-    query: GET_ALL_MOVIES
+    query: GET_CATEGORIES,
   })
-  const allMovies = response.data
+  const allCategories = response.data
   return {
-    props: { allMovies },
-    revalidate: 10,
+    props: { allCategories },
+    // revalidate: 10,
   }
 }
