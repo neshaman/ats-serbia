@@ -101,6 +101,29 @@ export async function getAllPostsForHome(preview) {
   return data?.posts
 }
 
+export async function getAllMovies() {
+  const data = await fetchAPI(`
+    query GetMovies {
+      movies {
+        nodes {
+          title
+          content
+          movieFields {
+            runningTime
+            featuredImage {       
+              node {
+                sizes
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+  return data?.movies
+}
+
 export async function getPostAndMorePosts(slug, preview, previewData) {
   const postPreview = preview && previewData?.post
   // The slug may be the id of an unpublished post

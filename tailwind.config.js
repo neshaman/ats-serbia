@@ -5,6 +5,9 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    // fontFamily: {
+    //   'sans': ['"Bona Nova"']
+    // },
     extend: {
       colors: {
         'accent-1': '#FAFAFA',
